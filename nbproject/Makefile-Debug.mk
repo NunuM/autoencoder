@@ -40,7 +40,7 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-lm
 
 # CC Compiler Flags
 CCFLAGS=
@@ -61,7 +61,7 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/autoencoder: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/autoencoder ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/autoencoder ${OBJECTFILES} ${LDLIBSOPTIONS} -lm
 
 ${OBJECTDIR}/enconder.o: enconder.c 
 	${MKDIR} -p ${OBJECTDIR}

@@ -18,16 +18,15 @@
 extern "C" {
 #endif
 
-    
+
 #define TOTAL_LAYERS 3
-    
+
     struct topology {
         uint layers;
         uint in_neurons;
         uint out_neurons;
         uint hidden_neurons;
     };
-
 
     struct neuron {
         double weight;
@@ -40,21 +39,35 @@ extern "C" {
 
     struct layer {
         struct neuron *neurons;
+        unsigned short size;
     };
-    
+
     struct net {
         struct layer * layers;
         struct topology * p_topology;
     };
 
-   
+
     double sigmoid(double x);
+
+    static double somDOW(struct layer * hidden_layer, struct layer * next_layer);
+    
+    static double updateInputWeights(struct layer * hidden_layer, struct layer * prev_layer);
+
+
     struct net * initializeNet(struct topology *p_topology);
+
     void printNet(struct net * p_net);
+    void printLayer(const struct layer * pt_layer);
+
     int feedFoward(struct net * p_net, int * input, int lenght);
-    
-    
-    
+
+    struct layer * getEncondedData(struct net * pt_net);
+    struct layer * getDecodedData(struct net * pt_net);
+
+
+    int backFoward(struct net * pt_net, int * target, int lenght);
+
 
 #ifdef __cplusplus
 }

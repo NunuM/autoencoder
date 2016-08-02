@@ -30,12 +30,25 @@ int main(int argc, char** argv) {
     struct net* my = initializeNet(tp);
 
     int train_X[3] = {1, 1, 1};
-    
-     printNet(my);
-    
-    feedFoward(my,train_X,3);
 
-   
+
+
+    feedFoward(my, train_X, 3);
+
+    printNet(my);
+
+    struct layer* encondedData = getEncondedData(my);
+    encondedData->size = 5;
+
+    printLayer(encondedData);
+
+    struct layer* decodedData = getDecodedData(my);
+    decodedData->size = 3;
+
+    printLayer(decodedData);
+
+    backFoward(my, train_X, 3);
+
 
 
     return (EXIT_SUCCESS);

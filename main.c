@@ -6,34 +6,40 @@
 
 /* 
  * File:   main.c
- * Author: bullet
+ * Author: nuno
  *
- * Created on August 1, 2016, 3:26 PM
+ * Created on August 1, 2016, 7:50 PM
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "encoder.h"
+
 /*
  * 
  */
 int main(int argc, char** argv) {
+
+    struct topology * tp = (struct topology *) malloc(sizeof (struct topology));
+
+    tp->hidden_neurons = 5;
+    tp->in_neurons = 3;
+    tp->layers = 3;
+    tp->out_neurons = 3;
+
+    struct net* my = initializeNet(tp);
+
+    int train_X[3] = {1, 1, 1};
     
-    struct topology tp;
+     printNet(my);
     
-    tp.input = 5;
-    tp.hiddenLayer = 5;
-    tp.outPutLayer = 5;
-    
-    
-    struct net* myNet = initializeNet(&tp);
-    
-    
-    
-    
-    
-    
-    
+    feedFoward(my,train_X,3);
+
+   
+
+
     return (EXIT_SUCCESS);
 }
+
+
 

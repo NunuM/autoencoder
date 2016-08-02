@@ -18,22 +18,24 @@
 extern "C" {
 #endif
 
-#include <math.h>
-    
-    
     
 #define TOTAL_LAYERS 3
     
     struct topology {
-        uint input;
-        uint hiddenLayer;
-        uint outPutLayer;
+        uint layers;
+        uint in_neurons;
+        uint out_neurons;
+        uint hidden_neurons;
     };
 
 
     struct neuron {
-        double training_rate;
-
+        double weight;
+        double deltaWeight;
+        double outPut;
+        double gradient;
+        double bias;
+        double z;
     };
 
     struct layer {
@@ -45,16 +47,14 @@ extern "C" {
         struct topology * p_topology;
     };
 
-    
-    static inline double calcSigmoid(double t) {
-        return 1 / (1 + (2.72 * exp(-t)));
-    }
-
-
+   
+    double sigmoid(double x);
     struct net * initializeNet(struct topology *p_topology);
     void printNet(struct net * p_net);
-
-
+    int feedFoward(struct net * p_net, int * input, int lenght);
+    
+    
+    
 
 #ifdef __cplusplus
 }
